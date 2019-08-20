@@ -1,0 +1,47 @@
+name: ServerSelector
+api: 3.1
+version: 1.0.0-InDev-beta3
+load: POSTWORLD
+main: robske_110\ServerSelector\ServerSelector
+depend: SignServerStats
+author: robske_110
+
+commands:
+ serverselector add:
+  description: Adds a sepecified server to the ServerSelector
+  usage: "/serverselector add <hostname> [port] [displayName]"
+  permission: ServerSelector.manageList
+ serverselector edit:
+  description: Edits fields of a sepecified server from the ServerSelector
+  usage: "/serverselector edit <hostname> [port] <field> <value>"
+  permission: ServerSelector.manageList
+ serverselector rem:
+  description: Removes a sepecified server from the ServerSelector
+  usage: "/serverselector rem <hostname> [port]"
+  permission: ServerSelector.manageList
+  aliases: [serverselector remove]
+ serverselector show:
+   description: Shows the ServerSelector
+   usage: "/serverselector <hostname> [port]"
+   permission: ServerSelector.openList
+   aliases: [serverlist, listservers]
+
+permissions:
+  ServerSelector:
+    description: "Allows to use all ServerSelector features."
+    children:
+      ServerSelector.openList:
+        description: "Allows to open the ServerSelector list."
+        default: true
+      ServerSelector.manageList:
+        description: "Allows to manage the ServerSelector list."
+        default: op
+      ServerSelector.servertransfer:
+        description: "Allows to click on a Server in the List and get transferred to that server."
+        default: true  
+      ServerSelector.showLastRefresh:
+        description: "Allows to see the last refresh date at the bottom of the selector."
+        default: true
+      ServerSelector.viewServer:
+        description: "Children are specific servers you can allow viewing for."
+        default: false
